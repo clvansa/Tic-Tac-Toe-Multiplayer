@@ -4,6 +4,7 @@ const path = require('path');
 const app = express()
 const server = http.createServer(app);
 const io = require('socket.io')(server);
+const cors = require('cors')
 const { makeKey, checkWinner } = require('./util');
 const { createGame, getGame, updateGame, removeGame, games } = require('./controller/games');
 const { createPlayer, getPlayer, removePlayer } = require('./controller/players');
