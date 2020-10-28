@@ -169,9 +169,13 @@ io.on('connection', socket => {
 
 const PORT = process.env.PORT || 5000;
 
-if (process.env.NODE_ENV === 'production') {    
-    const buildPath = path.join(__dirname, '..', 'build');
-    app.use(express.static(buildPath));
+if (process.env.NODE_ENV === 'production') {
+
+    app.use(express.static('client/bulid'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+    })
 }
 
 server.listen(PORT, () => {
