@@ -1,5 +1,5 @@
 const http = require('http');
-const expree = require('express')
+const express = require('express')
 const path = require('path');
 const app = expree()
 const server = http.createServer(app);
