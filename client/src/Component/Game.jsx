@@ -89,7 +89,7 @@ const Game = ({ name, gameId }) => {
                 ))
             }
             {
-                game.player1 && game.player1.id === player.id &&
+                game.player1 && game.player1 === player.id &&
                 <button onClick={restartGame}>Restart</button>
             }
             {!openRoom && <p>Your friend is already leave </p>}
