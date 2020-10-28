@@ -1,7 +1,7 @@
 const http = require('http');
 const express = require('express')
 const path = require('path');
-const app = expree()
+const app = express()
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 const { makeKey, checkWinner } = require('./util');
