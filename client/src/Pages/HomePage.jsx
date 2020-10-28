@@ -14,7 +14,7 @@ const HomePage = () => {
     const [gameId, setGameId] = useState('');
     const [gamesList, setGamesList] = useState([]);
 
-    const SERVER_ENDPOINT = 'http://localhost:5000'
+    const SERVER_ENDPOINT = 'https://tic-tac-online.herokuapp.com'
 
 
     const onFormSubmit = (name, gameId) => {

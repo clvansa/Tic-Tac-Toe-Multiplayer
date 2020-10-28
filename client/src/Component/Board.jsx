@@ -7,7 +7,6 @@ const Board = ({ player, game, onSquareClick, winner, openRoom }) => {
     const enabled = status === 'playing';
     const canPlay = player.id === game.playerTurn;
 
-    console.log({ id: player.id, turn: game.playerTurn })
 
     const { winnerCombination = [] } = winner || {};
     return (

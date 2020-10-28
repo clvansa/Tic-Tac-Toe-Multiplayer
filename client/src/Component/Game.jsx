@@ -10,7 +10,7 @@ const Game = ({ name, gameId }) => {
     const [notification, setNotification] = useState([])
     const [winner, setWinner] = useState(null);
     const [openRoom, setOpenRoom] = useState(true)
-    const SERVER_ENDPOINT = 'http://localhost:5000'
+    const SERVER_ENDPOINT = 'https://tic-tac-online.herokuapp.com'
 
     useEffect(() => {
         const event = gameId ? 'joinGame' : 'createGame';
@@ -46,7 +46,6 @@ const Game = ({ name, gameId }) => {
         socket.on('gameEnd', data => {
             const { winner } = data;
             setWinner(winner)
-            console.log(winner)
         })
         socket.on('leaveRoom', () => {
             setOpenRoom(false)
