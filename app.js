@@ -9,6 +9,22 @@ const { createGame, getGame, updateGame, removeGame, games } = require('./contro
 const { createPlayer, getPlayer, removePlayer } = require('./controller/players');
 
 
+// ** MIDDLEWARE ** //
+const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://tic-tac-online.herokuapp.com']
+const corsOptions = {
+    origin: function (origin, callback) {
+        console.log("** Origin of request " + origin)
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            console.log("Origin acceptable")
+            callback(null, true)
+        } else {
+            console.log("Origin rejected")
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}
+app.use(cors(corsOptions))
+
 io.on('connection', socket => {
     games.forEach(game => {
         game.player1 === null || game.player2 === null && io.emit('search', games)
@@ -171,10 +187,10 @@ const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
 
-    app.use(express.static('client/bulid'));
+    app.use(express.static(path.join(__dirname, 'client/build')));
 
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+        res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
     })
 }
 
